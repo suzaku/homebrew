@@ -5,32 +5,32 @@
 class Rose < Formula
   desc "A command line tool that allows you to treat files as sets of rows and perform set operations on them."
   homepage "https://github.com/suzaku/rose"
-  version "0.0.5"
+  version "0.0.6"
   bottle :unneeded
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/suzaku/rose/releases/download/v0.0.5/rose_Mac_x86_64.tar.gz"
-      sha256 "25cc780af536c6a9581615bffea99b81e632c4d42396b1886ee4763b6d472444"
+      url "https://github.com/suzaku/rose/releases/download/v0.0.6/rose_Mac_x86_64.tar.gz"
+      sha256 "db458cf6483bd9e4c9f8ed44522a4fc9aec678ecc67e1565ac5c315674e85d0d"
     end
     if Hardware::CPU.arm?
-      url "https://github.com/suzaku/rose/releases/download/v0.0.5/rose_Mac_arm64.tar.gz"
-      sha256 "7d54040fe095f5ef6a1dfdec4ade817f830fd80ec3f8942f593bc459ff06cb59"
+      url "https://github.com/suzaku/rose/releases/download/v0.0.6/rose_Mac_arm64.tar.gz"
+      sha256 "17bbc9349fd006c62b613425a5d08c61d2633e5c09d01b73d04ab076ac5e09bc"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/suzaku/rose/releases/download/v0.0.5/rose_Linux_x86_64.tar.gz"
-      sha256 "63e0b26477cbf1cc69dfafe6ffe991dd9225d9a3e3bc8b4daa6571f66cca88fb"
+      url "https://github.com/suzaku/rose/releases/download/v0.0.6/rose_Linux_x86_64.tar.gz"
+      sha256 "3269ce60ab837c612bfe89fe14cccc44687fee912b9aa16baa0df47ae9050186"
     end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/suzaku/rose/releases/download/v0.0.5/rose_Linux_armv6.tar.gz"
-      sha256 "d0e44a1cbde379f79146639e19c6a0e9e3ab190ff2431230ae14565a79e2214d"
+      url "https://github.com/suzaku/rose/releases/download/v0.0.6/rose_Linux_armv6.tar.gz"
+      sha256 "41a59c9d7a6af3475188a5e239430552731c98bf1ed88d39e3e6affd16c0333d"
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/suzaku/rose/releases/download/v0.0.5/rose_Linux_arm64.tar.gz"
-      sha256 "9bc9433eb0bf83833f9813fa1bd837eeb993092a8e2a941a2ce630549f57a44f"
+      url "https://github.com/suzaku/rose/releases/download/v0.0.6/rose_Linux_arm64.tar.gz"
+      sha256 "1fc7e0f31fde9b39423eb19d18a2eab26f1a14bacb3eed6a02a05c73ed19ad1f"
     end
   end
 
