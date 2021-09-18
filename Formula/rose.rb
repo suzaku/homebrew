@@ -5,43 +5,41 @@
 class Rose < Formula
   desc "A command line tool that allows you to treat files as sets of rows and perform set operations on them."
   homepage "https://github.com/suzaku/rose"
-  version "0.0.4"
+  version "0.0.5"
   bottle :unneeded
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/suzaku/rose/releases/download/v0.0.4/rose_Mac_x86_64.tar.gz"
-      sha256 "3a866dd5bc21110eae689da214cca51eddf5e4e57b8453aa4af3551aca239812"
+      url "https://github.com/suzaku/rose/releases/download/v0.0.5/rose_Mac_x86_64.tar.gz"
+      sha256 "25cc780af536c6a9581615bffea99b81e632c4d42396b1886ee4763b6d472444"
     end
     if Hardware::CPU.arm?
-      url "https://github.com/suzaku/rose/releases/download/v0.0.4/rose_Mac_arm64.tar.gz"
-      sha256 "acca42b09db6a25d6c6b4ebd9c3130d70184ea63bd13b137dbf7d76654e78218"
+      url "https://github.com/suzaku/rose/releases/download/v0.0.5/rose_Mac_arm64.tar.gz"
+      sha256 "7d54040fe095f5ef6a1dfdec4ade817f830fd80ec3f8942f593bc459ff06cb59"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/suzaku/rose/releases/download/v0.0.4/rose_Linux_x86_64.tar.gz"
-      sha256 "2d9e39f7c95e88b792d6f80f7a795e455006987f861e189715f98905c733e4f6"
+      url "https://github.com/suzaku/rose/releases/download/v0.0.5/rose_Linux_x86_64.tar.gz"
+      sha256 "63e0b26477cbf1cc69dfafe6ffe991dd9225d9a3e3bc8b4daa6571f66cca88fb"
     end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/suzaku/rose/releases/download/v0.0.4/rose_Linux_armv6.tar.gz"
-      sha256 "d43e4ec4533bcb1b7d93d8949768d8d06d3893e4d8a97d6fcb63a77c474e0991"
+      url "https://github.com/suzaku/rose/releases/download/v0.0.5/rose_Linux_armv6.tar.gz"
+      sha256 "d0e44a1cbde379f79146639e19c6a0e9e3ab190ff2431230ae14565a79e2214d"
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/suzaku/rose/releases/download/v0.0.4/rose_Linux_arm64.tar.gz"
-      sha256 "1faae0718af26f9d86a64372e0b741efe20f49763943e86a88b33a7dda3fefac"
+      url "https://github.com/suzaku/rose/releases/download/v0.0.5/rose_Linux_arm64.tar.gz"
+      sha256 "9bc9433eb0bf83833f9813fa1bd837eeb993092a8e2a941a2ce630549f57a44f"
     end
   end
 
   def install
     bin.install "rose"
-    system "#{bin}/rose completion zsh > /tmp/_rose"
-    zsh_completion.install "/tmp/_rose" => "_rose"
-    rm "/tmp/_rose"
-    system "#{bin}/rose completion bash > /tmp/rose.bash"
-    bash_completion.install "/tmp/rose.bash" => "rose"
-    rm "/tmp/rose.bash"
+    output = Utils.popen_read("#{bin}/rose completion bash")
+    (bash_completion/"rose").write output
+    output = Utils.popen_read("#{bin}/rose completion zsh")
+    (zsh_completion/"_rose").write output
   end
 
   test do
